@@ -17,6 +17,7 @@ public class ItemController {
 
     private final ItemService itemService;
 
+    //인테리어 카테고리 리스트
     @GetMapping("/api/v1/InteriorList")
     public Result itemV1(){
         String category = "interior";
@@ -24,6 +25,7 @@ public class ItemController {
         return new Result(findItem);
     }
 
+    // 키친 카테고리 리스트
     @GetMapping("/api/v1/KitchenList")
     public Result itemV2(){
         String category = "kitchen";
@@ -31,6 +33,7 @@ public class ItemController {
         return new Result(findItem);
     }
 
+    //침실 카테고리 리스트
     @GetMapping("/api/v1/BedroomList")
     public Result itemV3(){
         String category = "bedroom";
@@ -38,6 +41,7 @@ public class ItemController {
         return new Result(findItem);
     }
 
+    // 제품 상세 보기
     @GetMapping(value = "/api/itemDetail/{id}")
     public Result findOne(@PathVariable("id") long id){
         Item findItem = itemService.findOne(id);

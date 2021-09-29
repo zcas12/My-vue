@@ -18,6 +18,8 @@ import java.util.stream.Collectors;
 public class WishController {
 
     private final WishService wishService;
+    
+    //wish리스트 보기
     @GetMapping("/api/wish/{id}")
     public List<wishItemResponse> orderitem(@PathVariable("id") String id){
         List<WishItem> wishList = wishService.findWish(id);
@@ -41,6 +43,7 @@ public class WishController {
             wishDate = wishItem.getWishDate();
         }
     }
+    
     //wish 등록
     @PostMapping("/api/wish")
     public CreateWishesponse wishCreate(@RequestBody CreateWishRequest req){
@@ -68,6 +71,8 @@ public class WishController {
             this.id = id;
         }
     }
+    
+    //wish 중복체크
     @GetMapping("/api/wishCheck/{itemId}/{memberId}")
     public Result wishCheck(
             @PathVariable("itemId") long itemId,

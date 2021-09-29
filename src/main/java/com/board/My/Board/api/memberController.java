@@ -21,14 +21,7 @@ public class memberController {
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final MemberService memberService;
 
-/*    @PostMapping("/api/login")
-    public Member login(@RequestBody Member member){
-        String id = member.getId();
-        String password = member.getPassword();
-        Member findMember = memberService.findMember(id, password);
-        return findMember;
-    }*/
-
+    //회원가입
     @PostMapping("/api/auth/signUp")
     public CreateMemberResponse signUp(@RequestBody Member member){
         String id = memberService.join(member);
@@ -43,11 +36,14 @@ public class memberController {
         }
     }
 
+    // 회원 중복체크
     @GetMapping(value = "/api/MemberCheck/{id}")
     public Result findOne(@PathVariable("id") String id){
         Member findMember = memberService.findOne(id);
         return new Result(findMember);
     }
+    
+    //비밀번호 체크
     @PostMapping(value = "/api/PasswordCheck")
     public boolean PasswordCheck(@RequestBody Member member){
         String id = member.getId();
@@ -62,6 +58,8 @@ public class memberController {
         }
         return result;
     }
+    
+    //회원 정보수정
     @PutMapping(value = "/api/member")
     public UpdateAnsResponse MemberUpdate(@RequestBody MemberUpdateDto memberUpdateDto){
         memberService.update(memberUpdateDto);
@@ -74,6 +72,7 @@ public class memberController {
         private String id;
     }
 
+    // 내정보 보기
     @GetMapping(value = "/api/myInfo/{id}")
     public myInfoResponse myInfo(@PathVariable("id") String id){
         System.err.println(id);

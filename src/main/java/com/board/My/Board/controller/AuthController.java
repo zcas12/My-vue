@@ -29,6 +29,7 @@ public class AuthController {
     private final PasswordEncoder passwordEncoder;
     private final MemberService memberService;
 
+    // 로그인
     @PostMapping("/api/login")
     public ResponseEntity<TokenDto> login(@RequestBody LoginDto loginDto){
 
