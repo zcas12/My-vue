@@ -33,14 +33,14 @@ public class OrderRepository {
     public List<OrderItem> findOrderItem(String id){
 
         return em.createQuery("select o1 from OrderItem o1 join o1.order o join o.member m" +
-                        " where m.id = :memberId" , OrderItem.class)
+                        " where m.id = :memberId order by o.orderDate desc " , OrderItem.class)
                 .setParameter("memberId", id)
                 .setMaxResults(1000) // 최대 1000건
                 .getResultList();
     }
 
     public List<OrderItem> findOrderItem2() {
-        return em.createQuery("select o1 from OrderItem o1 join o1.order o join o.member m", OrderItem.class)
+        return em.createQuery("select o1 from OrderItem o1 join o1.order o join o.member m order by o.orderDate desc", OrderItem.class)
                 .setMaxResults(1000) // 최대 1000건
                 .getResultList();
     }

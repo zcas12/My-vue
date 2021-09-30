@@ -16,7 +16,7 @@
         회원가입
       </RouterLink>
     </div>
-    <div v-else="loginSuccess && auth === 'ROLE_USER'">
+    <div v-else-if="auth === 'ROLE_USER'">
       <RouterLink to="/WishList" class="myPage">
         MY페이지
       </RouterLink>
@@ -24,7 +24,7 @@
         로그아웃
       </button>
     </div>
-    <div v-else="loginSuccess && auth === 'ROLE_ADMIN'">
+    <div v-else-if="auth === 'ROLE_ADMIN'">
       <RouterLink to="/Admin_OrderList" class="myPage">
         관리자 페이지
       </RouterLink>

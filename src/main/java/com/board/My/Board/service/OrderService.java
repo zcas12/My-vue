@@ -1,9 +1,6 @@
 package com.board.My.Board.service;
 
-import com.board.My.Board.domain.Item;
-import com.board.My.Board.domain.Member;
-import com.board.My.Board.domain.Order;
-import com.board.My.Board.domain.OrderItem;
+import com.board.My.Board.domain.*;
 import com.board.My.Board.repository.ItemRepository;
 import com.board.My.Board.repository.MemberRepository;
 import com.board.My.Board.repository.OrderRepository;
@@ -55,4 +52,11 @@ public class OrderService {
     }
 
     public List<OrderItem> findOrderItem2() {return orderRepository.findOrderItem2();}
+
+    @Transactional
+    public void update(Long id, OrderStatus status) {
+        Order order = orderRepository.findOne(id);
+        System.err.println(order);
+        order.setStatus(status);
+    }
 }

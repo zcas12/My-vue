@@ -28,16 +28,21 @@
           <div class="th-inner both">주문상태</div>
           <div class="fht-cell"></div>
         </th>
+        <th tabindex="0" style="" data-field="status">
+          <div class="th-inner both"></div>
+          <div class="fht-cell"></div>
+        </th>
       </tr>
       </thead>
       <tbody>
-      <tr v-for="(item,idx) in orderList" :key="item.orderId">
+      <tr v-for="(item) in orderList" :key="item.orderId">
         <td>{{item.orderId}}</td>
         <td>{{item.name}}</td>
         <td>{{item.orderDate}}</td>
         <td>{{item.orderPrice}}</td>
         <td>{{item.count}}</td>
         <td>{{item.status}}</td>
+        <td><button class="btn btn-primary btn-finish" @click="orderFinish(item.orderId)">배송완료</button></td>
       </tr>
       </tbody>
     </table>
@@ -68,9 +73,30 @@ export default {
         .catch(error => {
           console.log(error)
         })
+    },
+    orderFinish(id){
+      if (!confirm("배송완료 하시겠습니까?")) {
+
+      } else {
+        this.axios.put('/api/order/' + id)
+            .then(response => {
+              console.log(response);
+              alert("완료되었습니다.")
+              this.$router.go(0);
+            })
+            .catch(error => {
+              console.log(error);
+            })
+      }
     }
   }
 
 }
 
 </script>
+<style lang="scss" scoped>
+.btn-finish{
+  width: 100px;
+  color: #F1F1F1;
+}
+</style>

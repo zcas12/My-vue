@@ -5,13 +5,10 @@
         <label for="title">제목</label>
         <input id="title" v-model="title" class="form-control" placeholder="제목을 입력하세요"/>
       </div>
-      <div class="form-group">
-        <label for="name">작성자</label>
-        <input type="text" id="name" v-model="name" class="form-control" placeholder="제목을 입력하세요"/>
-      </div>
+
       <div class="form-group">
         <label for="content">내용</label>
-        <textarea id="content" v-model="content" class="form-control" placeholder="내용을 입력하세요"/>
+        <textarea id="content" v-model="content" class="form-control" placeholder="내용을 입력하세요" />
       </div>
       <div class="btn-div">
         <button type="submit" class="btn btn-primary btn-write">등록</button>
@@ -24,15 +21,33 @@
 </template>
 
 <script>
-
+const storage = window.sessionStorage;
 export default {
-  data: function(){
-
+  data:()=>{
+    return{
+      title:'',
+      content: '',
+      name:''
+    }
   },
   computed:{
 
   },
+  created() {
+    this.fetchName();
+  },
   methods:{
+    fetchName(){
+      let id = storage.getItem("authId")
+      this.axios.get(`/api/myInfo/${id}`)
+          .then(response => {
+            this.name = response.data.name
+          })
+          .catch(error => {
+            console.log(error)
+          })
+
+    },
     submitQnA(){
       const date = new Date()
       const current = date.getFullYear() + '-' + (date.getMonth()+1) + '-'+ date.getDate();
@@ -52,7 +67,7 @@ export default {
           .catch(error =>{
             console.log(error)
           })
-    },
+    }
 
   }
 }

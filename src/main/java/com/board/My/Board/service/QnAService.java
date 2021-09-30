@@ -38,10 +38,8 @@ public class QnAService {
 
     @Transactional
     public void update(Long id, String answer) {
-        System.err.println("서비스1"+answer);
         QnA qna = qnaRepository.findOne(id);
         qna.setAnswer(answer);
-        System.err.println("서비스2"+qna);
     }
 
 }

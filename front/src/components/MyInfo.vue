@@ -6,13 +6,13 @@
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="name">이름</label>
-            <input type="text" class="form-control" id="name" v-model="name" placeholder="" readonly>
+            <input type="text" class="form-control" id="name" v-model="name" placeholder="" readonly />
           </div>
         </div>
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="password">비밀번호</label>
-            <input type="text" class="form-control" id="password" v-model="password" placeholder="" @blur="passwordMach" required>
+            <input type="password" class="form-control" id="password" v-model="password" placeholder="" @blur="passwordMach" required />
             <div class="pass-feedback" v-if="!passwordMatch">비밀번호가 잘못되었습니다.</div>
             <div class="invalid-feedback">비밀번호를 입력해주세요.</div>
           </div>
@@ -20,14 +20,14 @@
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="password">새 비밀번호</label>
-            <input type="text" class="form-control" id="NewPassword" v-model="NewPassword" placeholder="" @keyup="formCheck" required>
+            <input type="password" class="form-control" id="NewPassword" v-model="NewPassword" placeholder="" @keyup="formCheck" required />
             <div class="invalid-feedback">비밀번호를 입력해주세요.</div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="password">새 비밀번호 확인</label>
-            <input type="text" class="form-control" id="NewPasswordCheck" v-model="NewPasswordCheck" placeholder="" @keyup="passCheck" required>
+            <input type="password" class="form-control" id="NewPasswordCheck" v-model="NewPasswordCheck" placeholder="" @keyup="passCheck" required />
             <div class="invalid-feedback">비밀번호가 일치하지않습니다.</div>
           </div>
         </div>
@@ -35,14 +35,14 @@
           <label for="email">
             이메일
           </label>
-          <input type="email" class="form-control" id="email" v-model="email" placeholder="you@example.com" required>
+          <input type="email" class="form-control" id="email" v-model="email" placeholder="you@example.com" required />
           <div class="invalid-feedback">이메일을 입력해주세요.</div>
         </div>
         <div class="mb-3">
           <label for="address">
             주소
           </label>
-          <input type="text" class="form-control" id="address" v-model="address" placeholder="서울특별시 강남구" required>
+          <input type="text" class="form-control" id="address" v-model="address" placeholder="서울특별시 강남구" required />
           <div class="invalid-feedback">주소를 입력해주세요.</div>
         </div>
         <div class="mb-3">
@@ -52,9 +52,9 @@
                   &nbsp;(필수 아님)
             </span>
           </label>
-          <input type="text" class="form-control" id="address2" v-model="address2" placeholder="상세주소를 입력해주세요.">
+          <input type="text" class="form-control" id="address2" v-model="address2" placeholder="상세주소를 입력해주세요."/>
         </div>
-        <hr class="mb-4">
+        <hr class="mb-4"/>
         <div class="custom-control custom-checkbox">
           <input type="checkbox" class="form-check-input" id="invalidCheck" v-model="invalidCheck" required>
           <label class="form-check-label" for="invalidCheck">

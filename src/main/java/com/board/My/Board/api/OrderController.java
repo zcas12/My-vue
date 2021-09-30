@@ -89,13 +89,20 @@ public class OrderController {
         private LocalDateTime orderDate;
         private OrderStatus status;
         public orderItemResponse(OrderItem orderItem){
-            orderId = orderItem.getId();
+            orderId = orderItem.getOrder().getId();
             name = orderItem.getItem().getName();
             orderPrice = orderItem.getOrderPrice();
             count = orderItem.getCount();
             orderDate = orderItem.getOrder().getOrderDate();
             status = orderItem.getOrder().getStatus();
         }
+    }
+
+    @PutMapping("/api/order/{id}")
+    public Result orderFinish(@PathVariable("id") Long id){
+        OrderStatus status = OrderStatus.FINISH;
+        orderService.update(id, status);
+        return new Result(id);
     }
 
     @Data

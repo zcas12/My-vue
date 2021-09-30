@@ -45,4 +45,9 @@ public class WishService {
     public List<WishItem> findWish(String id) {
         return wishRepository.findWish(id);
     }
+
+    public Long delete(long id) {
+        wishRepository.delete(id);
+        return id;
+    }
 }

@@ -26,12 +26,12 @@ public class QnARepository {
     }
 
     public List<QnA> findAll(){
-        return em.createQuery("select q from QnA q", QnA.class)
+        return em.createQuery("select q from QnA q order by q.date desc ", QnA.class)
                 .getResultList();
     }
 
     public List<QnA> findByTitle(String title){
-        return em.createQuery("select q from QnA q where q.title = :title",QnA.class)
+        return em.createQuery("select q from QnA q where q.title = :title order by q.date desc ",QnA.class)
                 .setParameter("title", title)
                 .getResultList();
     }

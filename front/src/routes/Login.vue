@@ -2,8 +2,11 @@
   <div className="container">
     <form v-on:submit="login({id, password})">
       <h2>Login</h2>
-      <label><input placeholder="아이디" v-model="id" required></label>
-      <label><input type="password" placeholder="패스워드" v-model="password" required></label>
+      <label><input placeholder="아이디" v-model="id" required /></label>
+      <label>
+        <input :type="passwordFieldType" placeholder="패스워드" v-model="password" required />
+        <div id="keyShow" @click="switchVisibility">SHOW</div>
+      </label>
       <div class="id-feedback" v-if="loginSuccess">로그인 성공</div>
       <button type="submit">로그인</button>
     </form>
@@ -18,14 +21,24 @@ export default {
     //loginSuccess: false,
     //loginError: false,
     id: '',
-    password: ''
+    password: '',
+    passwordFieldType : 'password'
   }),
   computed:{
     ...mapState('member',["loginSuccess","loginError"])
   },
   methods: {
-    ...mapActions('member',["login"])
-
+    ...mapActions('member',["login"]),
+    switchVisibility(){
+      let keyShow = document.getElementById('keyShow');
+      if (this.passwordFieldType === "password"){
+        this.passwordFieldType = "text"
+        keyShow.textContent = "H I D E"
+      }else {
+        this.passwordFieldType = "password"
+        keyShow.textContent = "SHOW"
+      }
+    }
 /*      loginSubmit() {
         let data = {
           id: this.id,
@@ -64,6 +77,16 @@ export default {
         border: none;
         background: #f5e5a9;
       }
+      #keyShow {
+
+        position: absolute;
+        display: inline-block;
+        margin-left: -55px;
+        margin-top: 12px;
+        font-size: 14px;
+        cursor: pointer;
+        color: grey;
+      }
     }
 
     button {
@@ -94,4 +117,5 @@ export default {
   font-size: 0.875em;
   color: #dc3545;
 }
+
 </style>

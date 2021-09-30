@@ -1,6 +1,5 @@
 import axios from "axios";
 import router from "../routes/index"
-import VueCookies  from "vue3-cookies"
 const storage = window.sessionStorage;
 export default {
     // module
@@ -8,6 +7,7 @@ export default {
     state: {
         id: '',
         name: '',
+        auth:'',
         token: '',
         loginSuccess: false,
         loginError: false
@@ -18,7 +18,7 @@ export default {
             state.name = payload.name
             //state.token = payload.token
         },*/
-        loginSuccess(state,{id,password,token}) {
+        loginSuccess(state,{token}) {
 
             state.token=token;
             state.loginSuccess = true;
@@ -44,13 +44,19 @@ export default {
                             token: response.data.token
                         });
                         console.log(response.data);
-                        router.push("/");
+
+
                         const token = response.data.token
                         const authId = response.data.id
                         const auth = response.data.authority
                         storage.setItem("token",token);
                         storage.setItem("authId",authId);
                         storage.setItem("auth",auth);
+
+                        router.replace("/")
+                        setTimeout(function() {
+                            router.go(0);
+                        }, 1000);
                     }else{
                         commit('loginError', {
                         });
@@ -64,7 +70,6 @@ export default {
                     alert("로그인 실패")
                     console.log(error)
                 })
-
         },
         refreshLogin({commit}, payload) {
             console.log(payload)

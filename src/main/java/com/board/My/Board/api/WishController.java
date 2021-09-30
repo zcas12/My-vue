@@ -82,6 +82,12 @@ public class WishController {
         return new Result(CheckId);
     }
 
+    @DeleteMapping("/api/v1/wish/{id}")
+    public Result deleteWish (@PathVariable("id") long id){
+        Long ids = wishService.delete(id);
+        return new Result(ids);
+    }
+
     @Data
     @AllArgsConstructor
     static class Result<T>{

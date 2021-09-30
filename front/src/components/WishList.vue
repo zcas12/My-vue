@@ -24,6 +24,10 @@
           <div class="th-inner both">수량</div>
           <div class="fht-cell"></div>
         </th>
+        <th tabindex="0" style="" data-field="count">
+          <div class="th-inner both"></div>
+          <div class="fht-cell"></div>
+        </th>
       </tr>
       </thead>
       <tbody>
@@ -33,6 +37,9 @@
         <td>{{item.wishDate}}</td>
         <td>{{item.price}}</td>
         <td>{{item.count}}</td>
+        <td>
+          <button class="btn btn-danger" @click="deleteWish(item.wishId)">X</button>
+        </td>
       </tr>
       </tbody>
     </table>
@@ -65,6 +72,21 @@ export default {
           .catch(error => {
             console.log(error)
           })
+    },
+    deleteWish(id){
+      if (!confirm("삭제 하시겠습니까?")) {
+
+      } else {
+        this.axios.delete('/api/v1/wish/' + id)
+            .then(response => {
+
+              console.log(response.data);
+              this.fetchData();
+            })
+            .catch(error => {
+              console.log(error);
+            })
+      }
     }
   }
 }
