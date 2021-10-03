@@ -1,5 +1,6 @@
 package com.board.My.Board.repository;
 
+import com.board.My.Board.domain.Category;
 import com.board.My.Board.domain.Item;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -27,7 +28,7 @@ public class ItemRepository {
         return em.find(Item.class, id);
     }
 
-    public List<Item> findCategory(String category){
+    public List<Item> findCategory(Category category){
         return em.createQuery("select i from Item i where i.category = :category", Item.class)
                 .setParameter("category", category)
                 .getResultList();

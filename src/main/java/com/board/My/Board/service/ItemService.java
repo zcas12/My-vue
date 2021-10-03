@@ -1,5 +1,6 @@
 package com.board.My.Board.service;
 
+import com.board.My.Board.domain.Category;
 import com.board.My.Board.domain.Item;
 import com.board.My.Board.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-    public List<Item>  findCategory(String category){
+    public List<Item>  findCategory(Category category){
         return itemRepository.findCategory(category);
     }
 
@@ -32,5 +33,9 @@ public class ItemService {
         return itemRepository.findOne(itemId);
     }
 
-
+    @Transactional
+    public Long join(Item item) {
+        itemRepository.save(item);
+        return item.getId();
+    }
 }

@@ -28,6 +28,10 @@ export default {
         {
           name:'회원목록',
           href: '/Admin_MemberList'
+        },
+        {
+          name:'제품등록',
+          href: '/Admin_Item'
         }
       ]
     }

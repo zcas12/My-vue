@@ -15,7 +15,8 @@ public class Item {
     @Column(name="item_id")
     private Long id;
 
-    private String category;
+    @Enumerated(EnumType.STRING)
+    private Category category;
 
     private String name;
 

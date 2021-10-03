@@ -16,7 +16,7 @@ import MyInfo from "../components/MyInfo";
 import AdminPage from "./AdminPage";
 import Admin_OrderList from "../components/Admin_OrderList";
 import Admin_MemberList from "../components/Admin_MemberList";
-
+import Admin_Item from "../components/Admin_Item";
 export default createRouter ({
     //Hash
     // https://google.com/#/search
@@ -90,6 +90,10 @@ export default createRouter ({
         {
             path:'/Admin_MemberList',
             component: Admin_MemberList
+        },
+        {
+            path:'/Admin_Item',
+            component: Admin_Item
         }
     ]
 
